@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: user
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: scoreboard
+        container_name: scoreboard-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - default
+
+    nginx:
+        image: nginx:latest
+        container_name: scoreboard-nginx
+        restart: unless-stopped
+        environment:
+            DB_CONNECTION: 'sqlite'
+            DB_DATABASE: '/var/www/database/database.sqlite'
+        ports:
+            - 8000:80
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - default
+
+networks:
+    default:
+        driver: bridge
+
+
