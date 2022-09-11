@@ -6,7 +6,9 @@ A simple app to score a single tennis game
 Docker:
 
 1. `docker-compose build app && docker-compose up -d`
-2. `docker exec scoreboard-app ./install.sh`
+2.
+   - Windows (PS/CMD) `docker exec scoreboard-app ./install.sh`
+   - *nix `docker exec scoreboard-app bash ./install.sh`
 3. Connect to app on http://localhost:8000
 
 ## Run tests
