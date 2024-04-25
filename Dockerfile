@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:8-fpm-bookworm
 
 # Arguments defined in docker-compose.yml
 ARG user
